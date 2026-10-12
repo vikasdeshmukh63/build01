@@ -2,12 +2,12 @@ const faqs = [
   {
     question: "What is Build01?",
     answer:
-      "Build01 is an AI product company focused on creating intelligent software for real-world business needs. Our first product is Agent OS.",
+      "Build01 is an AI product company creating intelligent software for real-world business needs. Agent OS is one of our AI products.",
   },
   {
     question: "What is Agent OS?",
     answer:
-      "Agent OS is Build01's flagship product. We're developing it around the idea that AI should help businesses move from asking questions to accomplishing meaningful work — through AI agents, task-oriented workflows, and practical integrations.",
+      "Agent OS is one of Build01's AI products. We're developing it around the idea that AI should help businesses move from asking questions to accomplishing meaningful work — through AI agents, task-oriented workflows, and practical integrations.",
   },
   {
     question: "Who is Agent OS for?",

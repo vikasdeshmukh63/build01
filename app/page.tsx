@@ -1,6 +1,7 @@
 import HeroSection from "./components/home/HeroSection";
 import BrandStatementSection from "./components/home/BrandStatementSection";
-import IntroAgentOSSection from "./components/home/IntroAgentOSSection";
+import HomeHeroTransition from "./components/home/HomeHeroTransition";
+import OurProductsSection from "./components/home/OurProductsSection";
 import ProblemSection from "./components/home/ProblemSection";
 import ProductPrinciplesSection from "./components/home/ProductPrinciplesSection";
 import UseCasesSection from "./components/home/UseCasesSection";
@@ -15,14 +16,16 @@ import FinalCTASection from "./components/home/FinalCTASection";
 export default function HomePage() {
   return (
     <>
-      {/* Section 02 — Hero */}
-      <HeroSection />
+      <HomeHeroTransition>
+        {/* Section 02 — Hero */}
+        <HeroSection />
 
-      {/* Section 03 — Brand Statement */}
-      <BrandStatementSection />
+        {/* Section 03 — Brand Statement */}
+        <BrandStatementSection />
+      </HomeHeroTransition>
 
-      {/* Section 04 — Introduce Agent OS */}
-      <IntroAgentOSSection />
+      {/* Section 04 — Our Products */}
+      <OurProductsSection />
 
       {/* Section 05 — The Problem */}
       <ProblemSection />

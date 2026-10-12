@@ -6,7 +6,7 @@ export default function IntroAgentOSSection() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Eyebrow */}
         <p className="text-xs font-mono tracking-widest uppercase mb-4">
-          Introducing Our Flagship Product
+          One of Our AI Products
         </p>
 
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">

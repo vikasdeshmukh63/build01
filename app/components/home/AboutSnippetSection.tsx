@@ -21,7 +21,7 @@ export default function AboutSnippetSection() {
         </p>
 
         <p className="text-base leading-relaxed max-w-2xl mb-4">
-          Agent OS is our first step toward that vision.
+          Agent OS is one of our products bringing that vision to life.
         </p>
 
         <p className="text-base leading-relaxed max-w-2xl mb-8">
