@@ -68,12 +68,14 @@
 .home-hero-transition {
   position: relative;
   isolation: isolate;
+  background-color: #050608;
 }
 
 .home-hero-transition > .hero-section {
   position: sticky;
   top: 0;
-  z-index: 0;
+  z-index: 2;
+  will-change: transform, opacity;
 }
 
 .hero-section {
@@ -82,25 +84,36 @@
   overflow: hidden;
   min-height: 100svh;
   padding: 5rem 1.5rem 7rem;
-  background-color: #f4f5f6;
-  background-image:
-    linear-gradient(rgba(12, 21, 35, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(12, 21, 35, 0.035) 1px, transparent 1px);
-  background-size: 74px 74px;
+  background-color: transparent;
   color: var(--midnight);
   display: grid;
   place-items: center;
 }
 
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #f4f5f6;
+  background-image:
+    linear-gradient(rgba(12, 21, 35, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 21, 35, 0.035) 1px, transparent 1px);
+  background-size: 74px 74px;
+  opacity: var(--hero-exit-bg-opacity, 1);
+  will-change: opacity;
+  pointer-events: none;
+}
+
 .hero-section__decoration {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
-  opacity: calc(1 - var(--hero-exit-progress, 0));
-  transform: scale(var(--hero-exit-scale, 1));
-  clip-path: inset(0 0 var(--hero-exit-wipe, 0%) 0);
+  opacity: var(--hero-decor-opacity, 1);
+  transform: scale(var(--hero-decor-scale, 1));
   transform-origin: center center;
-  will-change: opacity, transform, clip-path;
+  will-change: opacity, transform;
 }
 
 .hero-section__shape {
@@ -136,16 +149,15 @@
 
 .hero-section__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(100%, 1000px);
   text-align: center;
-  opacity: calc(1 - var(--hero-exit-progress, 0));
+  opacity: var(--hero-exit-opacity, 1);
   transform:
     translateY(var(--hero-exit-offset, 0px))
     scale(var(--hero-exit-scale, 1));
-  clip-path: inset(0 0 var(--hero-exit-wipe, 0%) 0);
   transform-origin: center center;
-  will-change: opacity, transform, clip-path;
+  will-change: opacity, transform;
 }
 
 .hero-section__eyebrow {
