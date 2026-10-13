@@ -20,12 +20,9 @@ export default function HomePage() {
         {/* Section 02 — Hero */}
         <HeroSection />
 
-        {/* Section 03 — Brand Statement */}
+        {/* Section 03 — Brand Statement & Section 04 — Our Products */}
         <BrandStatementSection />
       </HomeHeroTransition>
-
-      {/* Section 04 — Our Products */}
-      <OurProductsSection />
 
       {/* Section 05 — The Problem */}
       <ProblemSection />

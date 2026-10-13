@@ -28,7 +28,6 @@ export default function HomeHeroTransition({
       hero.style.removeProperty("--hero-exit-scale");
       hero.style.removeProperty("--hero-exit-opacity");
       hero.style.removeProperty("--hero-exit-offset");
-      hero.style.removeProperty("--hero-exit-bg-opacity");
       hero.style.removeProperty("--hero-decor-scale");
       hero.style.removeProperty("--hero-decor-opacity");
       hero.style.pointerEvents = "";
@@ -69,18 +68,7 @@ export default function HomeHeroTransition({
         opacity = Math.max(0, 1 - Math.pow(fadeProgress, 1.25));
       }
 
-      // 4. Background crossfade: light grid background dissolves into the incoming dark section
-      let bgOpacity = 1;
-      if (progress <= 0.2) {
-        bgOpacity = 1;
-      } else if (progress >= 0.9) {
-        bgOpacity = 0;
-      } else {
-        const bgProgress = (progress - 0.2) / (0.9 - 0.2);
-        bgOpacity = Math.max(0, 1 - Math.pow(bgProgress, 1.15));
-      }
-
-      // 5. Floating decorative shapes scale down slightly more for 3D depth
+      // 4. Floating decorative shapes scale down slightly more for 3D depth
       const decorScale = 1 - 0.45 * Math.min(1, Math.pow(progress, 0.85));
       const decorOpacity = Math.max(0, opacity * (1 - progress * 0.2));
 
@@ -88,7 +76,6 @@ export default function HomeHeroTransition({
       hero.style.setProperty("--hero-exit-scale", scale.toFixed(4));
       hero.style.setProperty("--hero-exit-opacity", opacity.toFixed(4));
       hero.style.setProperty("--hero-exit-offset", `${offset.toFixed(1)}px`);
-      hero.style.setProperty("--hero-exit-bg-opacity", bgOpacity.toFixed(4));
       hero.style.setProperty("--hero-decor-scale", decorScale.toFixed(4));
       hero.style.setProperty("--hero-decor-opacity", decorOpacity.toFixed(4));
 

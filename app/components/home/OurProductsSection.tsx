@@ -1,147 +1,97 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface Product {
   id: string;
+  code: string;
+  category: string;
   name: string;
-  tagline: string;
+  headline: string;
   description: string;
+  tags: string[];
   href: string;
   released: boolean;
   accentColor: string;
+  image: string;
 }
 
 const PRODUCTS: Product[] = [
   {
-    id: "agent-os",
-    name: "Agent OS",
-    tagline: "Orchestrate AI agents at work",
+    id: "core-array",
+    code: "A.01",
+    category: "COMPUTE",
+    name: "Core Array",
+    headline: "Dense Neural Compute Spine",
     description:
-      "Agent OS is our first product — a platform for building, deploying, and managing AI agents across real business workflows. It moves AI beyond the chat window into systems that actually get work done.",
+      "High-density accelerator clusters engineered for zero-jitter agent inference, deterministic memory bandwidth, and sub-millisecond dispatch across thousands of concurrent nodes.",
+    tags: ["Accelerator Fabric", "Zero-Jitter Inference", "Deterministic Bus"],
     href: "/agent-os",
     released: true,
     accentColor: "#E87945",
+    image: "/assets/products/product-01.jpg",
   },
   {
-    id: "product-02",
-    name: "Coming Soon",
-    tagline: "Next product in development",
+    id: "fluidics-loop",
+    code: "A.02",
+    category: "THERMAL",
+    name: "Fluidics Loop",
+    headline: "Fluidics Loop",
     description:
-      "We're working on something new. This product will expand what's possible with intelligent automation for teams.",
+      "A sealed dielectric loop moves heat away from silicon at the source, holding the entire rack within a two degree band.",
+    tags: ["Dielectric Coolant", "Two-Degree Band", "Closed Cycle"],
+    href: "/contact",
+    released: false,
+    accentColor: "#C5F82A",
+    image: "/assets/products/product-02.jpg",
+  },
+  {
+    id: "power-grid",
+    code: "A.03",
+    category: "ENERGY",
+    name: "Power Grid",
+    headline: "Direct-Bus DC Distribution",
+    description:
+      "Solid-state power delivery routing 48V direct-to-die power distribution, eliminating multistage conversion losses and surviving transient spikes with microsecond response times.",
+    tags: ["Direct-to-Die 48V", "Microsecond Regulation", "Solid-State Bus"],
+    href: "/contact",
+    released: false,
+    accentColor: "#E5A84B",
+    image: "/assets/products/product-03.jpg",
+  },
+  {
+    id: "sync-layer",
+    code: "A.04",
+    category: "NETWORK",
+    name: "Sync Layer",
+    headline: "Deterministic Optical Interconnect",
+    description:
+      "Ultra-low latency coherent optical mesh synchronizing distributed AI memory spaces and collective communications across planetary-scale infrastructure.",
+    tags: ["Coherent Optics", "Sub-Microsecond Mesh", "Zero-Drop Fabric"],
     href: "/contact",
     released: false,
     accentColor: "#6BC8D6",
-  },
-  {
-    id: "product-03",
-    name: "Coming Soon",
-    tagline: "More to be announced",
-    description:
-      "A third product is on the roadmap. Stay close — we build in public and share progress as we go.",
-    href: "/contact",
-    released: false,
-    accentColor: "#778397",
+    image: "/assets/products/product-04.jpg",
   },
 ];
 
-const N = PRODUCTS.length;
-
-function ProductStrip({
-  product,
-  index,
-  progress,
-}: {
-  product: Product;
-  index: number;
-  // 0 = fully hidden off-screen, 1 = fully in place
-  progress: number;
-}) {
-  const [hovered, setHovered] = useState(false);
-
-  // Odd strips slide from bottom, even from top
-  const fromTop = index % 2 === 0;
-
-  // translateY: start fully off-screen (±100%), settle at 0
-  const translateY = fromTop
-    ? `${(1 - progress) * -100}%`
-    : `${(1 - progress) * 100}%`;
-
-  return (
-    <div
-      className={[
-        "op-strip",
-        hovered ? "op-strip--hovered" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      style={{
-        "--accent": product.accentColor,
-        transform: `translateY(${translateY})`,
-      } as React.CSSProperties}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Accent line on left edge */}
-      <div className="op-strip__accent-line" aria-hidden="true" />
-
-      {/* Collapsed content — always visible */}
-      <div className="op-strip__collapsed">
-        <span className="op-strip__index">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div className="op-strip__name-wrap">
-          <span className="op-strip__name">{product.name}</span>
-          {!product.released && (
-            <span className="op-strip__badge">Soon</span>
-          )}
-        </div>
-        <span className="op-strip__tagline-hint">{product.tagline}</span>
-      </div>
-
-      {/* Expanded overlay — slides in from left on hover */}
-      <div className="op-strip__expanded" aria-hidden={!hovered}>
-        <div className="op-strip__expanded-inner">
-          <div className="op-strip__logo-placeholder" aria-hidden="true">
-            <span>{product.name.charAt(0)}</span>
-          </div>
-          <div className="op-strip__info">
-            <p className="op-strip__eyebrow">{product.tagline}</p>
-            <h3 className="op-strip__heading">{product.name}</h3>
-            <p className="op-strip__description">{product.description}</p>
-            {product.released ? (
-              <Link
-                href={product.href}
-                className="op-strip__cta"
-                tabIndex={hovered ? 0 : -1}
-              >
-                Explore {product.name} ↗
-              </Link>
-            ) : (
-              <Link
-                href={product.href}
-                className="op-strip__cta op-strip__cta--muted"
-                tabIndex={hovered ? 0 : -1}
-              >
-                Get notified ↗
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+interface OurProductsSectionProps {
+  isEmbedded?: boolean;
+  entryProgress?: number;
 }
 
-export default function OurProductsSection() {
+export default function OurProductsSection({
+  isEmbedded = false,
+  entryProgress = 0,
+}: OurProductsSectionProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  // Per-strip progress 0→1
-  const [stripProgress, setStripProgress] = useState<number[]>(
-    Array(N).fill(0),
-  );
+  const [internalProgress, setInternalProgress] = useState(0);
+  const [activeStrip, setActiveStrip] = useState<number | null>(null);
 
   useEffect(() => {
+    if (isEmbedded) return;
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
@@ -150,7 +100,7 @@ export default function OurProductsSection() {
     );
 
     if (motionPreference.matches) {
-      setStripProgress(Array(N).fill(1));
+      setInternalProgress(1);
       return;
     }
 
@@ -159,28 +109,15 @@ export default function OurProductsSection() {
     const update = () => {
       raf = null;
       const rect = wrapper.getBoundingClientRect();
-      // Total scroll distance available in the wrapper past the sticky panel
       const scrollBudget = wrapper.offsetHeight - window.innerHeight;
       if (scrollBudget <= 0) {
-        setStripProgress(Array(N).fill(1));
+        setInternalProgress(1);
         return;
       }
 
-      // progress 0→1 across the entire wrapper scroll range
-      const overallProgress = Math.min(
-        1,
-        Math.max(0, -rect.top / scrollBudget),
-      );
-
-      // Each strip gets its own 1/N window of the overall progress
-      // Strip i starts at i/N and is fully in by (i+1)/N
-      const next = PRODUCTS.map((_, i) => {
-        const start = i / N;
-        const end = (i + 1) / N;
-        return Math.min(1, Math.max(0, (overallProgress - start) / (end - start)));
-      });
-
-      setStripProgress(next);
+      // progress 0 (wrapper enters top) -> 1 (scrolled through wrapper)
+      const p = Math.min(1, Math.max(0, -rect.top / scrollBudget));
+      setInternalProgress(p);
     };
 
     const onScroll = () => {
@@ -188,39 +125,207 @@ export default function OurProductsSection() {
       raf = window.requestAnimationFrame(update);
     };
 
-    update();
+    // Initial check
+    onScroll();
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", update);
+    window.addEventListener("resize", onScroll);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("resize", onScroll);
       if (raf !== null) window.cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isEmbedded]);
+
+  // When embedded, activeProgress is 0 -> 1 directly from parent
+  const activeProgress = isEmbedded ? entryProgress : internalProgress;
+  const animationFinished = isEmbedded ? activeProgress >= 1 : activeProgress >= 0.36;
+
+  // If scrolling back up before animation completes, collapse any active strip
+  useEffect(() => {
+    if (!animationFinished && activeStrip !== null) {
+      setActiveStrip(null);
+    }
+  }, [animationFinished, activeStrip]);
+
+  // Staggered arrival progress per strip:
+  // Each strip arrives smoothly from alternating directions
+  const stripProgress = PRODUCTS.map((_, i) => {
+    if (isEmbedded) {
+      const start = i * 0.1;
+      const end = Math.min(1, start + 0.65);
+      const raw = (activeProgress - start) / (end - start);
+      return Math.min(1, Math.max(0, raw));
+    }
+    const start = i * 0.05;
+    const end = Math.min(0.36, start + 0.22);
+    const raw = (activeProgress - start) / (end - start);
+    return Math.min(1, Math.max(0, raw));
+  });
+
+  const headerProgress = isEmbedded
+    ? Math.min(1, Math.max(0, activeProgress / 0.5))
+    : 1;
+
+  const stageContent = (
+    <div
+      id="our-products"
+      className={`op-stage ${isEmbedded ? "op-stage--embedded" : ""} ${animationFinished ? "op-stage--interactive" : ""}`}
+      style={{
+        pointerEvents: animationFinished ? "auto" : "none",
+        visibility: activeProgress > 0 ? "visible" : isEmbedded ? "hidden" : "visible",
+      }}
+    >
+      {/* Header bar matching the reference design */}
+      <header
+        className="op-header"
+        style={{
+          transform: isEmbedded ? `translateY(${(1 - headerProgress) * -100}%)` : undefined,
+        }}
+      >
+        <h2 className="op-header__title">Four systems. One spine.</h2>
+        <div className="op-header__meta">
+          <span className="op-header__tag">03 / HOVER OR TAP A COLUMN</span>
+        </div>
+      </header>
+
+        {/* Horizontal container for vertical strips */}
+        <div
+          className={`op-strips ${animationFinished ? "op-strips--interactive" : ""}`}
+          role="region"
+          aria-label="Product Systems"
+        >
+          {PRODUCTS.map((product, i) => {
+            // Even strips enter from TOP, Odd strips enter from BOTTOM
+            const fromTop = i % 2 === 0;
+            const currentP = stripProgress[i];
+            const translateY = fromTop
+              ? (1 - currentP) * -100
+              : (1 - currentP) * 100;
+
+            const isExpanded = animationFinished && activeStrip === i;
+
+            return (
+              <div
+                key={product.id}
+                className={`op-strip ${isExpanded ? "op-strip--expanded" : ""}`}
+                style={
+                  {
+                    "--accent": product.accentColor,
+                    transform: `translateY(${translateY.toFixed(2)}%)`,
+                  } as React.CSSProperties
+                }
+                onMouseEnter={() => {
+                  if (animationFinished) setActiveStrip(i);
+                }}
+                onMouseMove={() => {
+                  if (animationFinished && activeStrip !== i) setActiveStrip(i);
+                }}
+                onPointerEnter={() => {
+                  if (animationFinished) setActiveStrip(i);
+                }}
+                onClick={() => {
+                  if (animationFinished) setActiveStrip(i);
+                }}
+                tabIndex={0}
+                onFocus={() => {
+                  if (animationFinished) setActiveStrip(i);
+                }}
+                onKeyDown={(e) => {
+                  if (animationFinished && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    setActiveStrip(i);
+                  }
+                }}
+              >
+                {/* Background Image & Gradient for Expanded State */}
+                <div className="op-strip__bg-wrap" aria-hidden="true">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 70vw"
+                    priority={i < 2}
+                    className="op-strip__bg-img"
+                  />
+                  <div className="op-strip__bg-gradient" />
+                </div>
+
+                {/* Collapsed state (Code at top, vertical text centered, plus at bottom) */}
+                <div className="op-strip__collapsed" aria-hidden={isExpanded}>
+                  <span className="op-strip__code">{product.code}</span>
+                  <div className="op-strip__vertical-wrap">
+                    <span className="op-strip__vertical-title">
+                      {product.name}
+                    </span>
+                  </div>
+                  <span className="op-strip__plus" aria-hidden="true">
+                    +
+                  </span>
+                </div>
+
+                {/* Expanded state (Rich product details) */}
+                <div className="op-strip__expanded" aria-hidden={!isExpanded}>
+                  <div className="op-strip__expanded-content">
+                    <p className="op-strip__eyebrow">
+                      <span className="op-strip__eyebrow-code">{product.code}</span>{" "}
+                      <span className="op-strip__separator">/</span>{" "}
+                      <span className="op-strip__eyebrow-cat">{product.category}</span>
+                    </p>
+                    <h3 className="op-strip__title">{product.headline}</h3>
+                    <p className="op-strip__description">
+                      {product.description}
+                    </p>
+
+                    <div className="op-strip__tags">
+                      {product.tags.map((tag) => (
+                        <span key={tag} className="op-strip__tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="op-strip__actions">
+                      {product.released ? (
+                        <Link
+                          href={product.href}
+                          className="op-strip__cta"
+                          tabIndex={isExpanded ? 0 : -1}
+                        >
+                          Explore {product.name} <span>↗</span>
+                        </Link>
+                      ) : (
+                        <Link
+                          href={product.href}
+                          className="op-strip__cta"
+                          tabIndex={isExpanded ? 0 : -1}
+                        >
+                          Request Access <span>↗</span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+    </div>
+  );
+
+  if (isEmbedded) {
+    return stageContent;
+  }
 
   return (
-    /*
-     * Wrapper creates the scroll budget.
-     * 100vh = the sticky panel height
-     * N * 80vh = scroll distance to bring all strips fully in
-     */
-    <div
+    <section
+      id="our-products"
       ref={wrapperRef}
       className="op-wrapper"
-      style={{ minHeight: `${100 + N * 80}vh` }}
+      style={{ minHeight: "320vh" }}
     >
-      {/* Sticky frame — pins to viewport, clips overflowing strips */}
-      <div className="op-stage">
-        {PRODUCTS.map((product, i) => (
-          <ProductStrip
-            key={product.id}
-            product={product}
-            index={i}
-            progress={stripProgress[i]}
-          />
-        ))}
-      </div>
-    </div>
+      {stageContent}
+    </section>
   );
 }

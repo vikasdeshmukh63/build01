@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { BlurReveal } from "../blur-reveal";
+import OurProductsSection from "./OurProductsSection";
 
 export default function BrandStatementSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,6 +11,7 @@ export default function BrandStatementSection() {
   const pauseTimeoutRef = useRef<number | null>(null);
   const [videoDuration, setVideoDuration] = useState(0);
   const [visibleLineCount, setVisibleLineCount] = useState(0);
+  const [stripEntryProgress, setStripEntryProgress] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -27,6 +29,7 @@ export default function BrandStatementSection() {
         1,
         section.offsetHeight - window.innerHeight,
       );
+      // progress 0 (entered top of viewport) -> 1 (scrolled through entire budget)
       const progress = Math.min(
         1,
         Math.max(0, -sectionTop / stickyScrollDistance),
@@ -34,11 +37,32 @@ export default function BrandStatementSection() {
 
       if (motionPreference.matches) {
         setVisibleLineCount(4);
+        setStripEntryProgress(1);
         video.pause();
         return;
       }
 
-      setVisibleLineCount(Math.ceil(progress * 4));
+      // Phase 1: Brand Statement Reveal (0.0 -> 0.44)
+      if (progress <= 0.44) {
+        const lineProgress = progress / 0.44;
+        setVisibleLineCount(Math.ceil(lineProgress * 4));
+        setStripEntryProgress(0);
+      } else {
+        // Phase 2, 3, 4: Statement is fully revealed and FROZEN in place
+        setVisibleLineCount(4);
+
+        if (progress <= 0.50) {
+          // Pause / freeze window where statement is completely static
+          setStripEntryProgress(0);
+        } else if (progress <= 0.74) {
+          // Phase 3: Strips slide in from top & bottom over the frozen statement
+          const stripP = (progress - 0.50) / (0.74 - 0.50);
+          setStripEntryProgress(Math.min(1, Math.max(0, stripP)));
+        } else {
+          // Phase 4: Strips are fully settled into 4 equal columns with interactive hover
+          setStripEntryProgress(1);
+        }
+      }
     };
 
     const onScroll = () => {
@@ -59,13 +83,29 @@ export default function BrandStatementSection() {
         stageBounds.bottom > 0 &&
         stageBounds.top < window.innerHeight;
 
-      if (stageInView && !motionPreference.matches && video.paused) {
+      const stickyScrollDistance = Math.max(
+        1,
+        section.offsetHeight - window.innerHeight,
+      );
+      const currentProgress = Math.min(
+        1,
+        Math.max(0, -section.getBoundingClientRect().top / stickyScrollDistance),
+      );
+
+      // Only play video during text reveal phase (progress <= 0.44).
+      // Once text is revealed, freeze the video on that frame!
+      if (
+        stageInView &&
+        !motionPreference.matches &&
+        currentProgress <= 0.44 &&
+        video.paused
+      ) {
         video.play().catch((error: unknown) => {
           console.error("Could not play the Brand Statement video.", error);
         });
       }
 
-      if (stageInView && !motionPreference.matches) {
+      if (stageInView && !motionPreference.matches && currentProgress <= 0.44) {
         pauseTimeoutRef.current = window.setTimeout(() => {
           video.pause();
           pauseTimeoutRef.current = null;
@@ -83,6 +123,7 @@ export default function BrandStatementSection() {
     const onMotionPreferenceChange = () => {
       if (motionPreference.matches) {
         setVisibleLineCount(4);
+        setStripEntryProgress(1);
         video.pause();
       } else {
         updateScrollProgress();
@@ -120,9 +161,7 @@ export default function BrandStatementSection() {
       className="brand-statement"
       ref={sectionRef}
       style={{
-        height: videoDuration
-          ? `${100 + videoDuration * 50}svh`
-          : "600svh",
+        height: "850svh",
       }}
     >
       <div className="brand-statement__stage">
@@ -187,6 +226,12 @@ export default function BrandStatementSection() {
             </BlurReveal>
           </h2>
         </div>
+
+        {/* Third Section: Our Products strips appear while second section is frozen in view */}
+        <OurProductsSection
+          isEmbedded
+          entryProgress={stripEntryProgress}
+        />
       </div>
     </section>
   );
