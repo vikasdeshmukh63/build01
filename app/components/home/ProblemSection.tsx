@@ -1,15 +1,15 @@
 const problems = [
   {
-    heading: "Disconnected tools.",
-    body: "Intelligence often sits apart from the applications and systems where work happens.",
+    heading: "Unbounded Agent Loops.",
+    body: "Without deterministic supervisor runtimes, autonomous agents drift, hallucinate tasks, and break architectural boundaries.",
   },
   {
-    heading: "Fragmented workflows.",
-    body: "Teams still move information between documents, applications, and people to complete complex tasks.",
+    heading: "Stateless Silos & Prompt Bloat.",
+    body: "Intelligence sits isolated in chat windows, forcing teams to manually shuttle context between repositories, tickets, and docs.",
   },
   {
-    heading: "Unclear paths to adoption.",
-    body: "Businesses need a practical way to evaluate AI, define appropriate boundaries, and integrate it into everyday work.",
+    heading: "Self-Reported Quality.",
+    body: "Agents often self-declare tasks as done when tests fail or contracts break. Production workflows require automated, deterministic quality gates.",
   },
 ];
 
@@ -18,12 +18,13 @@ export default function ProblemSection() {
     <section id="problem" className="w-full">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          AI Has Potential. Businesses Need Practical Outcomes.
+          Raw Models Aren&apos;t Products. Workflows Need Infrastructure.
         </h2>
 
         <p className="text-base leading-relaxed max-w-2xl mb-10">
-          AI is advancing quickly, but turning that potential into dependable
-          business workflows requires more than access to a model.
+          Foundation models are advancing rapidly, but turning raw intelligence
+          into dependable business software requires dedicated product systems—runtimes,
+          verifiers, and persistent memory.
         </p>
 
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
@@ -36,8 +37,9 @@ export default function ProblemSection() {
         </ul>
 
         <p className="text-sm font-medium border-l-2 border-current pl-4">
-          Our perspective: AI products should be designed around the work people
-          need to accomplish—not just the technology powering them.
+          Build01&apos;s Thesis: Autonomous productivity isn&apos;t solved by another
+          chat wrapper. It requires dedicated, modular product systems engineered
+          for production workloads—starting with AgentOS.
         </p>
       </div>
     </section>

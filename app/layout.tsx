@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Build01 | AI Products Built for Work",
+  title: "Build01 | AI Systems & Product Studio",
   description:
-    "Build01 creates AI products for business. Discover Agent OS and our approach to AI agents, intelligent workflows, and practical AI adoption.",
+    "Build01 engineers production-grade AI products and autonomous runtimes. Explore AgentOS (A.01) and our expanding systems suite.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

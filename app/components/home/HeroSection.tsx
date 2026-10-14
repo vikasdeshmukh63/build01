@@ -13,7 +13,7 @@ export default function HeroSection() {
 
       <div className="hero-section__content">
         <p className="hero-section__eyebrow">
-          AI Product Company
+          AI Systems &amp; Product Studio
         </p>
 
         <h1 className="hero-section__heading">
@@ -26,14 +26,14 @@ export default function HeroSection() {
         </h1>
 
         <p className="hero-section__description">
-          We build AI products that help businesses move beyond
-          experimentation and put intelligent systems to work. Agent OS is one
-          of our products, designed to bring AI-powered workflows into
-          businesses.
+          Build01 engineers production-grade AI products and autonomous
+          infrastructure. AgentOS is our first runtime product—part of an
+          expanding suite built to turn intelligence into verified, dependable
+          execution.
         </p>
 
         <div className="hero-section__actions">
-          <Link href="/agent-os">Discover Agent OS</Link>
+          <Link href="/agent-os">Explore AgentOS (A.01)</Link>
           <Link href="/contact">Talk to Build01</Link>
         </div>
       </div>

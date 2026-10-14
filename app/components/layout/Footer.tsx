@@ -15,10 +15,10 @@ export default function Footer() {
               <span className="text-lg font-bold tracking-tight">Build01</span>
             </Link>
             <p className="text-sm font-semibold mb-1">
-              AI Products. Built for Work.
+              AI Systems &amp; Autonomous Infrastructure.
             </p>
             <p className="text-sm text-slate-500">
-              Building intelligent products for practical business needs.
+              Engineering dependable AI products and autonomous runtimes.
             </p>
           </div>
 
@@ -29,7 +29,10 @@ export default function Footer() {
             </h3>
             <ul className="flex flex-col gap-2 text-sm">
               <li>
-                <Link href="/agent-os">Agent OS</Link>
+                <Link href="/agent-os">AgentOS (A.01)</Link>
+              </li>
+              <li>
+                <Link href="/#our-products">Product Suite</Link>
               </li>
               <li>
                 <Link href="/about">About Build01</Link>

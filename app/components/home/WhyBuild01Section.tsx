@@ -1,19 +1,19 @@
 const pillars = [
   {
-    heading: "Product before hype",
-    body: "We start with the problem to be solved rather than the latest AI trend.",
+    heading: "Autonomous Runtime Mastery",
+    body: "We build the software scaffolding that lets AI agents plan, execute, and verify code deterministically—starting with our open-source runtime, AgentOS.",
   },
   {
-    heading: "Engineering alongside intelligence",
-    body: "We believe useful AI products require thoughtful software design, integration, testing, and ongoing improvement.",
+    heading: "Model-Agnostic Freedom",
+    body: "Foundation models evolve continuously. Build01 products ensure your workflows, workspace memory, and execution rules remain permanent and portable.",
   },
   {
-    heading: "Designed for practical adoption",
-    body: "We consider the people, processes, and existing systems that AI products need to work with.",
+    heading: "Repository-Centric State",
+    body: "We believe your code, task graphs, and trust records belong in your version-controlled repositories, never trapped inside closed vendor platforms.",
   },
   {
-    heading: "Curiosity with accountability",
-    body: "We embrace experimentation while recognizing the importance of evaluation, security, and appropriate human oversight.",
+    heading: "An Expanding Systems Ecosystem",
+    body: "From individual agent execution with AgentOS to fleet dispatch with Swarm Mesh, Build01 engineers the full stack for dependable autonomy.",
   },
 ];
 
@@ -22,7 +22,7 @@ export default function WhyBuild01Section() {
     <section id="why-build01" className="w-full">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">
-          Built With Purpose. Focused on What Matters.
+          Why Build01.
         </h2>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
@@ -35,8 +35,8 @@ export default function WhyBuild01Section() {
         </ul>
 
         <p className="text-sm font-medium border-l-2 border-current pl-4">
-          We&apos;re building Build01 around a simple belief: the best AI
-          products make complex work more manageable.
+          Build01 is founded on a clear conviction: foundation models provide the
+          intelligence, but Build01 products provide the systems that make it work.
         </p>
       </div>
     </section>

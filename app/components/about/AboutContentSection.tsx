@@ -32,25 +32,28 @@ export default function AboutContentSection() {
           </h1>
 
           <p className="text-base leading-relaxed max-w-2xl mb-4">
-            Build01 is an AI product company focused on creating intelligent
-            software for real-world business needs.
+            Build01 is an AI systems and product company engineering
+            production-grade software and autonomous runtimes.
           </p>
 
           <p className="text-base leading-relaxed max-w-2xl mb-4">
             We believe the opportunity in AI extends beyond individual prompts
-            and isolated tools. It lies in creating products that help people
-            interact with information, approach complex tasks, and connect
-            intelligence to meaningful work.
+            and isolated chatbots. It lies in creating modular, high-performance
+            product systems that govern planning, execution, verification, and
+            workspace state.
           </p>
 
           <p className="text-base leading-relaxed max-w-2xl mb-4">
-            Agent OS is our first step toward that vision.
+            AgentOS is our first product in production, pioneering loop-engineering
+            for autonomous coders. Backed by an expanding suite of upcoming
+            tools—including EvalOS, Context Spine, and Swarm Mesh—Build01 delivers
+            the infrastructure developers need to orchestrate intelligence reliably.
           </p>
 
           <p className="text-base leading-relaxed max-w-2xl mb-10">
-            As we build, our focus remains on practical use cases, thoughtful
-            engineering, and the opportunity to make AI more useful in everyday
-            business operations.
+            As we grow our product portfolio, our commitment remains fixed:
+            disciplined software engineering, deterministic verification, and
+            total repository-level control.
           </p>
 
           {/* Mission + Vision */}
@@ -60,8 +63,8 @@ export default function AboutContentSection() {
                 Our Mission
               </h2>
               <p className="text-base leading-relaxed">
-                Build AI products that turn technological progress into
-                practical value.
+                Engineer open, dependable systems that turn foundation model
+                intelligence into production-grade autonomous execution.
               </p>
             </div>
             <div>
@@ -69,8 +72,9 @@ export default function AboutContentSection() {
                 Our Vision
               </h2>
               <p className="text-base leading-relaxed">
-                A world where intelligent software helps people and businesses
-                accomplish more with clarity, control, and purpose.
+                A future where engineers and enterprises orchestrate fleets of
+                verified, intelligent agents with total clarity, control, and
+                repository-level ownership.
               </p>
             </div>
           </div>

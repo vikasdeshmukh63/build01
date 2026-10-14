@@ -1,19 +1,19 @@
 const principles = [
   {
-    heading: "Task-oriented intelligence",
-    body: "Start with a business objective and identify where AI can meaningfully contribute.",
+    heading: "Rent the intelligence. Own the loop.",
+    body: "Foundation models are swappable commodities. You shouldn't be locked into a single vendor's closed stack—your execution loops, rules, and workflows must belong to you.",
   },
   {
-    heading: "Connected workflows",
-    body: "Work toward connecting AI capabilities with the steps, tools, and information needed to complete a task.",
+    heading: "Deterministic verification over blind trust.",
+    body: "Never rely on self-reported agent completion. Every change must be validated against automated tests, strict contracts, and deterministic quality gates.",
   },
   {
-    heading: "Human-directed execution",
-    body: "Keep people involved in decisions and approvals where context, accountability, or risk requires it.",
+    heading: "Repo-local, durable state.",
+    body: "Task planning, architectural decisions, and trust records belong inside your version-controlled repository, eliminating prompt bloat and ephemeral context.",
   },
   {
-    heading: "Responsible by design",
-    body: "Treat access, permissions, evaluation, and oversight as important parts of the product design.",
+    heading: "Modular, composable systems.",
+    body: "Instead of a fragile monolith, Build01 engineers focused, interoperable products that solve distinct bottlenecks across the autonomous lifecycle.",
   },
 ];
 
@@ -22,12 +22,13 @@ export default function ProductPrinciplesSection() {
     <section id="product-principles" className="w-full">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          Built Around the Work That Matters.
+          How We Build at Build01.
         </h2>
 
         <p className="text-base leading-relaxed max-w-2xl mb-10">
-          Agent OS is guided by a product vision focused on making AI more
-          useful, connected, and practical in business environments.
+          Every product we develop—from our autonomous runtime AgentOS to
+          verification harnesses and persistent memory—is guided by four
+          foundational engineering principles.
         </p>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">

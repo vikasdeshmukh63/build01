@@ -182,9 +182,9 @@ export default function OurProductsSection({
           transform: isEmbedded ? `translateY(${(1 - headerProgress) * -100}%)` : undefined,
         }}
       >
-        <h2 className="op-header__title">Four systems. One spine.</h2>
+        <h2 className="op-header__title">The Build01 Product Suite</h2>
         <div className="op-header__meta">
-          <span className="op-header__tag">03 / HOVER OR TAP A COLUMN</span>
+          <span className="op-header__tag">03 / FOUR SYSTEMS · HOVER TO EXPLORE</span>
         </div>
       </header>
 
