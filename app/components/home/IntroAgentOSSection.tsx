@@ -39,7 +39,7 @@ export default function IntroAgentOSSection() {
             href="/agent-os"
             className="px-6 py-3 font-medium border border-current rounded text-center"
           >
-            Explore Agent OS ↗
+            Explore AgentOS ↗
           </Link>
           <Link
             href="/contact"

@@ -1,39 +1,39 @@
-/*
-  NOTE: Only publish cards for features that exist in the current version of Agent OS.
-  Each card below is a proposed capability area — replace messaging with accurate
-  descriptions and remove any capability not yet supported.
-*/
-
 const capabilities = [
   {
-    area: "Agent orchestration",
-    messaging: "Coordinate AI-driven tasks and workflow steps.",
-    requirement: "Verify actual orchestration support before publishing.",
+    area: "Loop Engineering & Task Planning",
+    messaging:
+      "Translates intent into immutable draft proposals and inspectable semantic diffs before applying any changes to your repository.",
+    tag: "Planning",
   },
   {
-    area: "Tool integration",
-    messaging: "Connect agents to approved tools and services.",
-    requirement: "Name supported integrations accurately.",
+    area: "Interchangeable Worker Dispatch",
+    messaging:
+      "Drives Claude Code, Codex, and other LLMs as swappable commodity workers. You retain full control over the execution harness.",
+    tag: "Workers",
   },
   {
-    area: "Workflow management",
-    messaging: "Structure multistep tasks into understandable processes.",
-    requirement: "Confirm the current workflow interface.",
+    area: "Deterministic Verification",
+    messaging:
+      "Evaluates generated code against test suites, schema contracts, and scope drift from git diffs so completion is never self-reported.",
+    tag: "Gates",
   },
   {
-    area: "Human oversight",
-    messaging: "Allow review or approval where needed.",
-    requirement: "Verify available controls.",
+    area: "Repo-Local Knowledge Mesh",
+    messaging:
+      "Durable facts, architectural decisions, and run checkpoints stay in .agents/memory/ and .agents/runs/ without prompt bloat.",
+    tag: "Memory",
   },
   {
-    area: "Monitoring and evaluation",
-    messaging: "Assess task execution and output quality.",
-    requirement: "Confirm implemented logging and evaluation.",
+    area: "Guarded Feedback Cycles",
+    messaging:
+      "When a validation fails, AgentOS captures the failure log and feeds it into the next attempt, bounded by configured loop limits.",
+    tag: "Reliability",
   },
   {
-    area: "Access and security",
-    messaging: "Apply appropriate access boundaries to AI operations.",
-    requirement: "Document actual security controls.",
+    area: "Single-Binary Rust CLI",
+    messaging:
+      "Zero heavyweight dependencies. Install via cargo install agentos-build01 --locked and run seamlessly on Linux, macOS, and Windows.",
+    tag: "CLI",
   },
 ];
 
@@ -41,22 +41,36 @@ export default function ProductCapabilitiesSection() {
   return (
     <section id="product-capabilities" className="w-full">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          What Agent OS Is Being Built to Do.
-        </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div>
+            <p className="text-xs font-mono tracking-widest uppercase text-orange-500 mb-2">
+              Capabilities
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Engineered for Autonomous Execution.
+            </h2>
+          </div>
+          <p className="text-sm text-slate-500 max-w-md">
+            Six architectural pillars designed to make AI coding agents dependable,
+            inspectable, and repo-native.
+          </p>
+        </div>
 
-        <p className="text-base leading-relaxed max-w-2xl mb-10">
-          Agent OS is designed around six core capability areas. Each is
-          intended to address a practical gap in how businesses work with AI
-          today.
-        </p>
-
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {capabilities.map((cap) => (
-            <li key={cap.area}>
-              <h3 className="text-base font-semibold mb-2">{cap.area}</h3>
-              <p className="text-sm leading-relaxed">{cap.messaging}</p>
-              {/* Development note (remove before launch): {cap.requirement} */}
+            <li
+              key={cap.area}
+              className="p-6 rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono tracking-widest uppercase text-slate-400 mb-3 block">
+                  {cap.tag}
+                </span>
+                <h3 className="text-base font-semibold mb-2">{cap.area}</h3>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {cap.messaging}
+                </p>
+              </div>
             </li>
           ))}
         </ul>

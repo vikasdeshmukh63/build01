@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 interface Product {
@@ -13,67 +12,66 @@ interface Product {
   description: string;
   tags: string[];
   href: string;
+  githubUrl?: string;
+  installCommand?: string;
   released: boolean;
   accentColor: string;
-  image: string;
 }
 
 const PRODUCTS: Product[] = [
   {
-    id: "core-array",
+    id: "agent-os",
     code: "A.01",
-    category: "COMPUTE",
-    name: "Core Array",
-    headline: "Dense Neural Compute Spine",
+    category: "AUTONOMOUS RUNTIME",
+    name: "AgentOS",
+    headline: "Rent the intelligence. Own the loop.",
     description:
-      "High-density accelerator clusters engineered for zero-jitter agent inference, deterministic memory bandwidth, and sub-millisecond dispatch across thousands of concurrent nodes.",
-    tags: ["Accelerator Fabric", "Zero-Jitter Inference", "Deterministic Bus"],
+      "AgentOS owns the loop around the coding agents you already run. Describe intent in a few sentences; AgentOS plans it into tasks, drives Claude Code or Codex as interchangeable workers, verifies every result deterministically, and keeps memory and handoffs in your repo.",
+    tags: ["Loop Engineering", "Deterministic Verifier", "Claude Code & Codex", "Repo-Local State"],
     href: "/agent-os",
+    githubUrl: "https://github.com/vikasdeshmukh63/AgentOS",
+    installCommand: "cargo install agentos-build01 --locked",
     released: true,
-    accentColor: "#E87945",
-    image: "/assets/products/product-01.jpg",
+    accentColor: "#FF5C00",
   },
   {
-    id: "fluidics-loop",
+    id: "eval-os",
     code: "A.02",
-    category: "THERMAL",
-    name: "Fluidics Loop",
-    headline: "Fluidics Loop",
+    category: "VERIFICATION & GATES",
+    name: "EvalOS",
+    headline: "Deterministic Agent Quality Gate",
     description:
-      "A sealed dielectric loop moves heat away from silicon at the source, holding the entire rack within a two degree band.",
-    tags: ["Dielectric Coolant", "Two-Degree Band", "Closed Cycle"],
+      "Automated verification harness evaluating code against strict contracts before merge. Checks schema, invariants, and scope drift directly from git diffs so done is never self-reported.",
+    tags: ["Contract Testing", "Zero Drift Checks", "Automated Gates"],
     href: "/contact",
     released: false,
     accentColor: "#C5F82A",
-    image: "/assets/products/product-02.jpg",
   },
   {
-    id: "power-grid",
+    id: "context-spine",
     code: "A.03",
-    category: "ENERGY",
-    name: "Power Grid",
-    headline: "Direct-Bus DC Distribution",
+    category: "PROJECT MEMORY",
+    name: "Context Spine",
+    headline: "Durable Workspace Knowledge Mesh",
     description:
-      "Solid-state power delivery routing 48V direct-to-die power distribution, eliminating multistage conversion losses and surviving transient spikes with microsecond response times.",
-    tags: ["Direct-to-Die 48V", "Microsecond Regulation", "Solid-State Bus"],
+      "Repo-embedded persistent memory capturing facts, decisions, and run histories across agent sessions. Feeds relevant context to workers without prompt bloat or vendor lock-in.",
+    tags: ["Repo-Local Memory", "Trust Records", "Zero Token-Bloat"],
     href: "/contact",
     released: false,
     accentColor: "#E5A84B",
-    image: "/assets/products/product-03.jpg",
   },
   {
-    id: "sync-layer",
+    id: "swarm-mesh",
     code: "A.04",
-    category: "NETWORK",
-    name: "Sync Layer",
-    headline: "Deterministic Optical Interconnect",
+    category: "FLEET ORCHESTRATION",
+    name: "Swarm Mesh",
+    headline: "Coordinated Agent Fleet Dispatch",
     description:
-      "Ultra-low latency coherent optical mesh synchronizing distributed AI memory spaces and collective communications across planetary-scale infrastructure.",
-    tags: ["Coherent Optics", "Sub-Microsecond Mesh", "Zero-Drop Fabric"],
+      "Distributed task router managing parallel queues, dependency graphs, and multi-agent teams. Coordinates specialist workers with bounded scopes and automated handoffs.",
+    tags: ["Multi-Agent Routing", "Dependency Queues", "Sandboxed Execution"],
     href: "/contact",
     released: false,
     accentColor: "#6BC8D6",
-    image: "/assets/products/product-04.jpg",
   },
 ];
 
@@ -239,22 +237,59 @@ export default function OurProductsSection({
                   }
                 }}
               >
-                {/* Background Image & Gradient for Expanded State */}
-                <div className="op-strip__bg-wrap" aria-hidden="true">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 70vw"
-                    priority={i < 2}
-                    className="op-strip__bg-img"
-                  />
-                  <div className="op-strip__bg-gradient" />
+                {/* Aura Gradient: "Burnt Paper" Background for Hover/Expanded State */}
+                <div className="op-strip__aura-wrap" aria-hidden="true">
+                  <div className="op-strip__aura-base" />
+                  <div className="aura-bg">
+                    <div className="aura-layer-1" />
+                    <div className="aura-layer-2" />
+                    <div className="aura-grain">
+                      <svg
+                        width="100%"
+                        height="100%"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <filter id={`aura-grain-${product.id}`}>
+                          <feTurbulence
+                            type="fractalNoise"
+                            baseFrequency="0.7"
+                            numOctaves={4}
+                            stitchTiles="stitch"
+                          />
+                          <feColorMatrix
+                            type="matrix"
+                            values="0.181 0.608 0.061 0 0.075
+                                    0.181 0.608 0.061 0 0.075
+                                    0.181 0.608 0.061 0 0.075
+                                    0     0     0     1 0"
+                          />
+                        </filter>
+                        <rect
+                          width="100%"
+                          height="100%"
+                          filter={`url(#aura-grain-${product.id})`}
+                        />
+                      </svg>
+                    </div>
+                    <div className="aura-vignette" />
+                  </div>
                 </div>
 
-                {/* Collapsed state (Code at top, vertical text centered, plus at bottom) */}
+                {/* Collapsed state (Code & status at top, vertical text centered, plus at bottom) */}
                 <div className="op-strip__collapsed" aria-hidden={isExpanded}>
-                  <span className="op-strip__code">{product.code}</span>
+                  <div className="op-strip__collapsed-top">
+                    <span className="op-strip__code">{product.code}</span>
+                    <span
+                      className={`op-strip__collapsed-badge ${
+                        product.released
+                          ? "op-strip__collapsed-badge--live"
+                          : "op-strip__collapsed-badge--soon"
+                      }`}
+                    >
+                      {product.released ? "LIVE" : "SOON"}
+                    </span>
+                  </div>
                   <div className="op-strip__vertical-wrap">
                     <span className="op-strip__vertical-title">
                       {product.name}
@@ -272,6 +307,15 @@ export default function OurProductsSection({
                       <span className="op-strip__eyebrow-code">{product.code}</span>{" "}
                       <span className="op-strip__separator">/</span>{" "}
                       <span className="op-strip__eyebrow-cat">{product.category}</span>
+                      <span
+                        className={`op-strip__eyebrow-status ${
+                          product.released
+                            ? "op-strip__eyebrow-status--live"
+                            : "op-strip__eyebrow-status--soon"
+                        }`}
+                      >
+                        {product.released ? "LIVE & OPEN SOURCE" : "IN DEVELOPMENT"}
+                      </span>
                     </p>
                     <h3 className="op-strip__title">{product.headline}</h3>
                     <p className="op-strip__description">
@@ -288,20 +332,41 @@ export default function OurProductsSection({
 
                     <div className="op-strip__actions">
                       {product.released ? (
-                        <Link
-                          href={product.href}
-                          className="op-strip__cta"
-                          tabIndex={isExpanded ? 0 : -1}
-                        >
-                          Explore {product.name} <span>↗</span>
-                        </Link>
+                        <>
+                          <Link
+                            href={product.href}
+                            className="op-strip__cta"
+                            tabIndex={isExpanded ? 0 : -1}
+                          >
+                            Explore {product.name} <span>↗</span>
+                          </Link>
+                          {product.githubUrl && (
+                            <a
+                              href={product.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="op-strip__cta op-strip__cta--github"
+                              tabIndex={isExpanded ? 0 : -1}
+                            >
+                              GitHub <span>↗</span>
+                            </a>
+                          )}
+                          {product.installCommand && (
+                            <span
+                              className="op-strip__install-pill"
+                              title="Click to copy install command"
+                            >
+                              <code>$ {product.installCommand}</code>
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <Link
                           href={product.href}
                           className="op-strip__cta"
                           tabIndex={isExpanded ? 0 : -1}
                         >
-                          Request Access <span>↗</span>
+                          Request Early Access <span>↗</span>
                         </Link>
                       )}
                     </div>

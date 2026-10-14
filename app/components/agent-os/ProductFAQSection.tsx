@@ -1,38 +1,33 @@
 const faqs = [
   {
-    question: "What is Agent OS?",
+    question: "What is AgentOS?",
     answer:
-      "Agent OS is Build01's flagship AI product. We're developing it around the idea that AI should help businesses move from asking questions to accomplishing meaningful work — through AI agents, task-oriented workflows, and practical integrations.",
+      "AgentOS is Build01's flagship open-source autonomous runtime. It owns the loop around the coding agents you run — planning intent into tasks, driving interchangeable workers (like Claude Code or Codex), verifying results deterministically, and storing all memory in your repository.",
   },
   {
-    question: "Who is Agent OS for?",
+    question: "Is AgentOS available now?",
     answer:
-      "Agent OS is designed for business leaders, operations teams, IT decision-makers, and enterprises looking to put AI to work in practical, well-defined ways.",
+      "Yes. AgentOS is available right now. You can install the single-binary CLI via `cargo install agentos-build01 --locked` or inspect the code on GitHub at github.com/vikasdeshmukh63/AgentOS.",
   },
   {
-    question: "Is Agent OS available now?",
+    question: "What workers and models does AgentOS support?",
     answer:
-      "[Placeholder — replace with current availability status from the Agent OS product team.]",
+      "AgentOS supports Claude Code, OpenAI Codex, and modular worker harnesses. You treat the underlying AI models as swappable intelligence while keeping task planning, contracts, and memory under your control.",
   },
   {
-    question: "What integrations does Agent OS support?",
+    question: "Where are task states and memory stored?",
     answer:
-      "[Placeholder — replace with confirmed integration information from the Agent OS product team.]",
+      "Everything lives directly inside your repository in plain Markdown under `.agents/memory/` and `.agents/runs/`. There is no closed SaaS database or vendor lock-in.",
   },
   {
-    question: "How does Agent OS handle security and access control?",
+    question: "How does human oversight work in AgentOS?",
     answer:
-      "[Placeholder — replace with accurate security and access control information once confirmed.]",
+      "Every proposal is an immutable draft revision with an inspectable semantic diff. No active state changes before explicit confirmation, and tasks can carry hard feedback-cycle bounds.",
   },
   {
-    question: "How does human oversight work in Agent OS?",
+    question: "How do I get started?",
     answer:
-      "Agent OS is being designed to keep people involved in decisions and approvals where context, accountability, or risk requires it. Specific oversight controls will be documented as the product matures.",
-  },
-  {
-    question: "How do I get access or request a demo?",
-    answer:
-      "Contact the Build01 team via our Contact page. We'll discuss your use case and determine whether Agent OS is the right fit.",
+      "Install the CLI with `cargo install agentos-build01 --locked`, navigate to your project repo, and start describing intent with `agentos`. Explore the GitHub repo for templates and documentation.",
   },
 ];
 

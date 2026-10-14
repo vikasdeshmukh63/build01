@@ -48,6 +48,16 @@ export default function Footer() {
               <li>
                 <Link href="/contact">Contact</Link>
               </li>
+              <li>
+                <a
+                  href="https://github.com/vikasdeshmukh63/AgentOS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  GitHub (AgentOS) ↗
+                </a>
+              </li>
               {/* Add LinkedIn URL and business email once confirmed */}
               {/* <li><a href="https://linkedin.com/company/build01" target="_blank" rel="noopener noreferrer">LinkedIn</a></li> */}
               {/* <li><a href="mailto:hello@build01.com">hello@build01.com</a></li> */}
