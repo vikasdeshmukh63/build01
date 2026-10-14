@@ -33,7 +33,15 @@ export function BlurReveal({
 }: BlurRevealProps) {
   const elementRef = useRef<HTMLElement>(null);
   const [hasEnteredView, setHasEnteredView] = useState(!inView);
-  const isVisible = trigger && hasEnteredView;
+  const [isMounted, setIsMounted] = useState(false);
+  const isVisible = trigger && hasEnteredView && isMounted;
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   useEffect(() => {
     const element = elementRef.current;

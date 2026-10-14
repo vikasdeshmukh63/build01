@@ -1,7 +1,6 @@
 import HeroSection from "./components/home/HeroSection";
 import BrandStatementSection from "./components/home/BrandStatementSection";
 import HomeHeroTransition from "./components/home/HomeHeroTransition";
-import OurProductsSection from "./components/home/OurProductsSection";
 import ProblemSection from "./components/home/ProblemSection";
 import ProductPrinciplesSection from "./components/home/ProductPrinciplesSection";
 import UseCasesSection from "./components/home/UseCasesSection";

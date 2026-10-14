@@ -42,21 +42,21 @@ export default function BrandStatementSection() {
         return;
       }
 
-      // Phase 1: Brand Statement Reveal (0.0 -> 0.44)
-      if (progress <= 0.44) {
-        const lineProgress = progress / 0.44;
+      // Phase 1: Brand Statement Reveal (0.0 -> 0.38)
+      if (progress <= 0.38) {
+        const lineProgress = progress / 0.38;
         setVisibleLineCount(Math.ceil(lineProgress * 4));
         setStripEntryProgress(0);
       } else {
         // Phase 2, 3, 4: Statement is fully revealed and FROZEN in place
         setVisibleLineCount(4);
 
-        if (progress <= 0.50) {
+        if (progress <= 0.44) {
           // Pause / freeze window where statement is completely static
           setStripEntryProgress(0);
-        } else if (progress <= 0.74) {
+        } else if (progress <= 0.68) {
           // Phase 3: Strips slide in from top & bottom over the frozen statement
-          const stripP = (progress - 0.50) / (0.74 - 0.50);
+          const stripP = (progress - 0.44) / (0.68 - 0.44);
           setStripEntryProgress(Math.min(1, Math.max(0, stripP)));
         } else {
           // Phase 4: Strips are fully settled into 4 equal columns with interactive hover
@@ -92,12 +92,12 @@ export default function BrandStatementSection() {
         Math.max(0, -section.getBoundingClientRect().top / stickyScrollDistance),
       );
 
-      // Only play video during text reveal phase (progress <= 0.44).
+      // Only play video during text reveal phase (progress <= 0.38).
       // Once text is revealed, freeze the video on that frame!
       if (
         stageInView &&
         !motionPreference.matches &&
-        currentProgress <= 0.44 &&
+        currentProgress <= 0.38 &&
         video.paused
       ) {
         video.play().catch((error: unknown) => {
@@ -105,7 +105,7 @@ export default function BrandStatementSection() {
         });
       }
 
-      if (stageInView && !motionPreference.matches && currentProgress <= 0.44) {
+      if (stageInView && !motionPreference.matches && currentProgress <= 0.38) {
         pauseTimeoutRef.current = window.setTimeout(() => {
           video.pause();
           pauseTimeoutRef.current = null;
@@ -161,7 +161,7 @@ export default function BrandStatementSection() {
       className="brand-statement"
       ref={sectionRef}
       style={{
-        height: "850svh",
+        height: "960svh",
       }}
     >
       <div className="brand-statement__stage">
