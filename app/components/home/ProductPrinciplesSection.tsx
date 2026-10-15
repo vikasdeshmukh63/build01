@@ -271,117 +271,123 @@ export default function ProductPrinciplesSection() {
       className="principles-stage"
       id="product-principles"
     >
-      {/* Background Parallax Layers in isolated clipping container */}
-      <div className="principles-bg-wrap" aria-hidden="true">
-        <div
-          className="principles-layer principles-gridbg"
-          data-s="-.12"
-        />
-        <div
-          className="principles-layer principles-ghost"
-          data-x="-.35"
-          data-s=".05"
-        >
-          PRINCIPLES
-        </div>
-        <div
-          className="principles-layer principles-sq"
-          data-s=".14"
-          data-r="-.02"
-          data-r0="-12"
-        />
-        <div
-          className="principles-layer principles-sq2"
-          data-s="-.22"
-          data-r=".05"
-          data-r0="18"
-        />
-        <div
-          className="principles-layer principles-ci"
-          data-s=".18"
-        />
-        <div
-          className="principles-layer principles-ring"
-          data-s="-.3"
-        />
-      </div>
-
-      <div className="principles-shell">
-        {/* Left Column Wrapper spanning full row height */}
-        <div className="principles-side-col">
-          {/* Sticky Left Sidebar */}
-          <aside className="principles-side">
-            <span className="principles-tag">OUR PRINCIPLES</span>
-            <h2 className="principles-heading">
-              How We Build at <em>Build01.</em>
-            </h2>
-            <p className="principles-lead">
-              Every product we develop—from our autonomous runtime AgentOS to
-              verification harnesses and persistent memory—is guided by four
-              foundational engineering principles.
-            </p>
-
-            <nav className="principles-nav" aria-label="Product Principles">
-              {PRINCIPLES.map((principle, i) => {
-                const isActive = activeIdx === i;
-                return (
-                  <a
-                    key={principle.id}
-                    href={`#${principle.id}`}
-                    className={isActive ? "on" : ""}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToCard(i);
-                    }}
-                  >
-                    <i />
-                    {principle.navLabel}
-                  </a>
-                );
-              })}
-            </nav>
-
-            <div className="principles-count" aria-live="polite">
-              0{activeIdx + 1} / 04
-            </div>
-          </aside>
+      {/* Inner visual container that pins, shrinks, and dissolves on parallax exit */}
+      <div className="principles-inner">
+        {/* Background Parallax Layers in isolated clipping container */}
+        <div className="principles-bg-wrap" aria-hidden="true">
+          <div
+            className="principles-layer principles-gridbg"
+            data-s="-.12"
+          />
+          <div
+            className="principles-layer principles-ghost"
+            data-x="-.35"
+            data-s=".05"
+          >
+            PRINCIPLES
+          </div>
+          <div
+            className="principles-layer principles-sq"
+            data-s=".14"
+            data-r="-.02"
+            data-r0="-12"
+          />
+          <div
+            className="principles-layer principles-sq2"
+            data-s="-.22"
+            data-r=".05"
+            data-r0="18"
+          />
+          <div
+            className="principles-layer principles-ci"
+            data-s=".18"
+          />
+          <div
+            className="principles-layer principles-ring"
+            data-s="-.3"
+          />
         </div>
 
-        {/* Scrolling Right Column */}
-        <div className="principles-cards">
-          {PRINCIPLES.map((principle, i) => (
-            <article
-              key={principle.id}
-              id={principle.id}
-              data-index={i}
-              ref={(el) => {
-                cardRefs.current[i] = el;
-              }}
-              className={`principles-card ${visibleIndices.includes(i) ? "show" : ""} ${activeIdx === i ? "is-active" : ""}`}
-              onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
-                e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
-              }}
-            >
-              <div className="principles-card-glow" aria-hidden="true" />
-              <span className="principles-num" data-s="-.08" aria-hidden="true">
-                {principle.num}
-              </span>
-              <div className="principles-in">
-                <div className="principles-top" data-s=".05">
-                  <span className="principles-ico">{principle.icon}</span>
-                  <span className="principles-mono">P.{principle.num}</span>
-                </div>
-                <h3>{principle.title}</h3>
-                <p>{principle.description}</p>
+        <div className="principles-shell">
+          {/* Left Column Wrapper spanning full row height */}
+          <div className="principles-side-col">
+            {/* Sticky Left Sidebar */}
+            <aside className="principles-side">
+              <span className="principles-tag">OUR PRINCIPLES</span>
+              <h2 className="principles-heading">
+                How We Build at <em>Build01.</em>
+              </h2>
+              <p className="principles-lead">
+                Every product we develop—from our autonomous runtime AgentOS to
+                verification harnesses and persistent memory—is guided by four
+                foundational engineering principles.
+              </p>
+
+              <nav className="principles-nav" aria-label="Product Principles">
+                {PRINCIPLES.map((principle, i) => {
+                  const isActive = activeIdx === i;
+                  return (
+                    <a
+                      key={principle.id}
+                      href={`#${principle.id}`}
+                      className={isActive ? "on" : ""}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToCard(i);
+                      }}
+                    >
+                      <i />
+                      {principle.navLabel}
+                    </a>
+                  );
+                })}
+              </nav>
+
+              <div className="principles-count" aria-live="polite">
+                0{activeIdx + 1} / 04
               </div>
-            </article>
-          ))}
+            </aside>
+          </div>
+
+          {/* Scrolling Right Column */}
+          <div className="principles-cards">
+            {PRINCIPLES.map((principle, i) => (
+              <article
+                key={principle.id}
+                id={principle.id}
+                data-index={i}
+                ref={(el) => {
+                  cardRefs.current[i] = el;
+                }}
+                className={`principles-card ${visibleIndices.includes(i) ? "show" : ""} ${activeIdx === i ? "is-active" : ""}`}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+                  e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+                }}
+              >
+                <div className="principles-card-glow" aria-hidden="true" />
+                <span className="principles-num" data-s="-.08" aria-hidden="true">
+                  {principle.num}
+                </span>
+                <div className="principles-in">
+                  <div className="principles-top" data-s=".05">
+                    <span className="principles-ico">{principle.icon}</span>
+                    <span className="principles-mono">P.{principle.num}</span>
+                  </div>
+                  <h3>{principle.title}</h3>
+                  <p>{principle.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Transition Spacer allowing Section 07 to rise with parallax */}
+      <div className="principles-exit-spacer" aria-hidden="true" />
     </section>
   );
 }
