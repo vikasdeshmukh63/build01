@@ -1,118 +1,137 @@
+import Link from "next/link";
+
 const approachSteps = [
   {
     number: "01",
     label: "Understand the work.",
-    body: "Identify the task, its users, constraints, and the outcome that matters.",
+    body: "Identify the task, its users, constraints, and the outcome that matters. Build around the real human bottleneck.",
   },
   {
     number: "02",
     label: "Choose the right approach.",
-    body: "Evaluate where AI, automation, existing software, or a combination of these makes sense.",
+    body: "Evaluate where AI, deterministic automation, existing software, or a combination of these makes the most sense.",
   },
   {
     number: "03",
     label: "Build with intention.",
-    body: "Design the experience, workflow, and technical foundations around the real use case.",
+    body: "Design the experience, workflow, and technical foundations around verifiable contracts and repo-native state.",
   },
   {
     number: "04",
     label: "Learn and improve.",
-    body: "Evaluate performance, gather feedback, and refine the solution as requirements evolve.",
+    body: "Evaluate performance, gather feedback, and refine the solution as model architectures and requirements evolve.",
   },
 ];
 
 export default function AboutContentSection() {
   return (
-    <>
-      {/* Company introduction */}
-      <section id="about-intro" className="w-full">
-        <div className="max-w-7xl mx-auto px-6 py-24">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
-            We Build for What Comes Next.
+    <div className="subpage">
+      {/* 01 — Hero Introduction */}
+      <section id="about-intro" className="subpage-hero">
+        <div className="grid" aria-hidden="true" />
+        <div className="sq" aria-hidden="true" />
+        <div className="sq2" aria-hidden="true" />
+        <div className="ci" aria-hidden="true" />
+
+        <div className="subpage-shell">
+          <span className="subpage-tag">ABOUT BUILD01 / AI SYSTEMS STUDIO</span>
+
+          <h1 className="subpage-title">
+            We Build for What <em>Comes Next.</em>
           </h1>
 
-          <p className="text-base leading-relaxed max-w-2xl mb-4">
+          <p className="subpage-lead">
             Build01 is an AI systems and product company engineering
-            production-grade software and autonomous runtimes.
+            production-grade software and autonomous runtimes. We believe the
+            opportunity in AI extends beyond individual prompts and isolated
+            chatbots—it lies in creating modular, high-performance product
+            systems that govern planning, execution, verification, and workspace
+            state.
           </p>
 
-          <p className="text-base leading-relaxed max-w-2xl mb-4">
-            We believe the opportunity in AI extends beyond individual prompts
-            and isolated chatbots. It lies in creating modular, high-performance
-            product systems that govern planning, execution, verification, and
-            workspace state.
-          </p>
+          <div className="cta-stage__btns">
+            <Link
+              href="/agent-os"
+              className="cta-stage__btn cta-stage__btn--dark"
+            >
+              Explore AgentOS (A.01)
+            </Link>
+            <Link
+              href="/contact"
+              className="cta-stage__btn cta-stage__btn--outline"
+            >
+              Talk to Our Team ↗
+            </Link>
+          </div>
+        </div>
+      </section>
 
-          <p className="text-base leading-relaxed max-w-2xl mb-4">
-            AgentOS is our first product in production, pioneering loop-engineering
-            for autonomous coders. Backed by an expanding suite of upcoming
-            tools—including EvalOS, Context Spine, and Swarm Mesh—Build01 delivers
-            the infrastructure developers need to orchestrate intelligence reliably.
-          </p>
+      {/* 02 — Mission & Vision in Obsidian Stage */}
+      <section id="about-mission" className="subpage-section subpage-section--dark">
+        <div className="grid" aria-hidden="true" />
+        <div className="glow" aria-hidden="true" />
 
-          <p className="text-base leading-relaxed max-w-2xl mb-10">
-            As we grow our product portfolio, our commitment remains fixed:
-            disciplined software engineering, deterministic verification, and
-            total repository-level control.
-          </p>
+        <div className="subpage-shell">
+          <span className="subpage-tag">FOUNDATIONAL PILLARS</span>
 
-          {/* Mission + Vision */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h2 className="text-sm font-mono tracking-widest uppercase mb-3">
-                Our Mission
-              </h2>
-              <p className="text-base leading-relaxed">
-                Engineer open, dependable systems that turn foundation model
-                intelligence into production-grade autonomous execution.
-              </p>
+          <h2 className="subpage-title">
+            Open, Dependable, <em>Repo-Native.</em>
+          </h2>
+
+          <div className="subpage-card-grid">
+            <div className="subpage-card">
+              <div>
+                <span className="subpage-card__tag">CORE MANDATE</span>
+                <h3>Our Mission</h3>
+                <p>
+                  Engineer open, dependable systems that turn foundation model
+                  intelligence into production-grade autonomous execution without
+                  vendor lock-in.
+                </p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-sm font-mono tracking-widest uppercase mb-3">
-                Our Vision
-              </h2>
-              <p className="text-base leading-relaxed">
-                A future where engineers and enterprises orchestrate fleets of
-                verified, intelligent agents with total clarity, control, and
-                repository-level ownership.
-              </p>
+
+            <div className="subpage-card">
+              <div>
+                <span className="subpage-card__tag">FUTURE HORIZON</span>
+                <h3>Our Vision</h3>
+                <p>
+                  A future where engineers and enterprises orchestrate fleets of
+                  verified, intelligent agents with total clarity, deterministic
+                  control, and repository-level ownership.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Approach */}
-      <section id="about-approach" className="w-full">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Good AI Starts With the Right Problem.
+      {/* 03 — Approach */}
+      <section id="about-approach" className="subpage-section">
+        <div className="subpage-shell">
+          <span className="subpage-tag">ENGINEERING PHILOSOPHY</span>
+
+          <h2 className="subpage-title">
+            Good AI Starts With the <em>Right Problem.</em>
           </h2>
 
-          <p className="text-base leading-relaxed max-w-2xl mb-10">
-            We believe building useful AI products requires a balance of
-            experimentation, product thinking, and engineering discipline.
+          <p className="subpage-lead">
+            We believe building useful AI products requires a disciplined balance of
+            experimentation, product thinking, and deterministic systems
+            engineering.
           </p>
 
-          <ol className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div className="subpage-card-grid">
             {approachSteps.map((step) => (
-              <li key={step.number} className="flex gap-4">
-                <span className="text-sm font-mono text-slate-400 mt-0.5 shrink-0">
-                  {step.number}
-                </span>
-                <div>
-                  <h3 className="text-base font-semibold mb-2">{step.label}</h3>
-                  <p className="text-sm leading-relaxed">{step.body}</p>
-                </div>
-              </li>
+              <div key={step.number} className="subpage-card--light">
+                <span className="subpage-card__num">{step.number}</span>
+                <h3>{step.label}</h3>
+                <p>{step.body}</p>
+              </div>
             ))}
-          </ol>
-
-          <p className="text-sm font-medium border-l-2 border-current pl-4">
-            Our goal is not to put AI everywhere. It&apos;s to build where
-            intelligence makes a meaningful difference.
-          </p>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -2,32 +2,39 @@ import Link from "next/link";
 
 export default function ProductCTASection() {
   return (
-    <section id="product-cta" className="w-full border-t border-black/10 dark:border-white/10">
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-          Ready to Own Your Agent Loop?
+    <section id="product-cta" className="subpage-section subpage-section--dark">
+      <div className="grid" aria-hidden="true" />
+      <div className="glow" aria-hidden="true" />
+
+      <div className="subpage-shell">
+        <span className="subpage-tag">GET STARTED</span>
+
+        <h2 className="subpage-title">
+          Ready to Own Your <em>Agent Loop?</em>
         </h2>
 
-        <p className="text-base md:text-lg leading-relaxed max-w-2xl mb-8 text-slate-600 dark:text-slate-400">
+        <p className="subpage-lead">
           AgentOS is open source, built in Rust, and available on crates.io today.
-          Install the CLI, inspect the codebase, or connect with Build01 to discuss
-          enterprise agent orchestration.
+          Install the CLI, inspect the codebase, or connect with our team to
+          discuss runtime integration.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+        <div className="cta-stage__btns">
           <a
             href="https://github.com/vikasdeshmukh63/AgentOS"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 font-semibold bg-orange-600 hover:bg-orange-700 text-white rounded text-center transition-colors flex items-center justify-center gap-2"
+            className="cta-stage__btn cta-stage__btn--dark"
+            style={{ background: "#ff7a1f", color: "#050a14", borderColor: "#ff7a1f" }}
           >
-            Star on GitHub <span>↗</span>
+            Star on GitHub ↗
           </a>
           <Link
             href="/contact"
-            className="px-6 py-3 font-medium border border-current rounded text-center hover:opacity-80 transition-opacity"
+            className="cta-stage__btn cta-stage__btn--outline"
+            style={{ color: "#ffffff", borderColor: "#2a3248" }}
           >
-            Contact Build01
+            Talk to Build01 ↗
           </Link>
         </div>
       </div>

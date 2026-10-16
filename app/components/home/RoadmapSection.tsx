@@ -43,10 +43,28 @@ export default function RoadmapSection() {
       if (reducedMotion) return;
 
       const vh = window.innerHeight || 1;
+      const isMobile = window.innerWidth <= 900;
       const sr = stage.getBoundingClientRect();
       const sc = sr.top + sr.height / 2 - vh / 2;
 
-      // 1. Floating parallax layers and watermark numerals
+      // 1. Column Parallax: columns dynamically rise / grow upward from bottom to top as you scroll
+      const colEls = stage.querySelectorAll<HTMLElement>(".st-col");
+      // Increasing upward parallax rates: taller cards emerge faster and higher
+      const colRates = [0.035, 0.08, 0.13, 0.185];
+      colEls.forEach((col, idx) => {
+        if (isMobile) {
+          col.style.transform = "";
+          return;
+        }
+        const rate = colRates[idx] ?? 0.05;
+        // sc is the stage distance relative to viewport center.
+        // When section enters from bottom (sc > 0), columns are lowered.
+        // As you scroll down (sc decreases), columns ascend and grow upward!
+        const yOffset = sc * rate;
+        col.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0)`;
+      });
+
+      // 2. Floating parallax layers and watermark numerals
       const parallaxEls = stage.querySelectorAll<HTMLElement>("[data-s]");
       parallaxEls.forEach((el) => {
         const parentCard = el.closest<HTMLElement>(".st");
@@ -65,8 +83,7 @@ export default function RoadmapSection() {
         ).toFixed(1)}px, 0)${isSq ? " rotate(-8deg)" : ""}`;
       });
 
-      // 2. Parallax entry transition over previous section (#about-snippet)
-      const isMobile = window.innerWidth <= 900;
+      // 3. Parallax entry transition over previous section (#about-snippet)
       const prevSection = document.getElementById("about-snippet");
       const prevInner =
         prevSection?.querySelector<HTMLElement>(".about-stage__inner") ||
@@ -144,6 +161,11 @@ export default function RoadmapSection() {
       window.removeEventListener("resize", scheduleRun);
       if (frame) window.cancelAnimationFrame(frame);
 
+      const colEls = stage.querySelectorAll<HTMLElement>(".st-col");
+      colEls.forEach((col) => {
+        col.style.removeProperty("transform");
+      });
+
       const prevSection = document.getElementById("about-snippet");
       const prevInner =
         prevSection?.querySelector<HTMLElement>(".about-stage__inner") ||
@@ -192,90 +214,110 @@ export default function RoadmapSection() {
 
           <div className="stairs">
             {/* Card 1: AgentOS (Live) */}
-            <article className="st a">
-              <span className="wm" data-s="-0.06">
-                01
-              </span>
-              <div className="top">
-                <span className="code">A.01 · LIVE</span>
-                <span className="pill live">● LIVE</span>
-              </div>
-              <div className="bot">
-                <h3>
-                  AgentOS<span>— Runtime</span>
-                </h3>
-                <p>
-                  Our foundational loop-engineering runtime. Directs Claude Code
-                  and Codex with deterministic verification, task planning, and
-                  repo-local state.
-                </p>
-                <span className="cmd">
-                  $ cargo install agentos-build01 --locked
+            <div className="st-col">
+              <article className="st a">
+                <span className="st-growth-stem" aria-hidden="true" />
+                <span className="st-growth-shimmer" aria-hidden="true" />
+                <span className="wm" data-s="-0.06">
+                  01
                 </span>
-              </div>
-            </article>
+                <div className="top">
+                  <span className="code">A.01 · LIVE</span>
+                  <span className="pill live">● LIVE</span>
+                </div>
+                <div className="bot">
+                  <h3>
+                    AgentOS<span>— Runtime</span>
+                  </h3>
+                  <p>
+                    Our foundational loop-engineering runtime. Directs Claude Code
+                    and Codex with deterministic verification, task planning, and
+                    repo-local state.
+                  </p>
+                  <span className="cmd">
+                    $ cargo install agentos-build01 --locked
+                  </span>
+                </div>
+              </article>
+              <div className="st-pedestal" aria-hidden="true" />
+            </div>
 
             {/* Card 2: EvalOS (In Dev) */}
-            <article className="st">
-              <span className="wm" data-s="-0.06">
-                02
-              </span>
-              <div className="top">
-                <span className="code">A.02 · IN DEV</span>
-                <span className="pill dev">IN DEV</span>
-              </div>
-              <div className="bot">
-                <h3>
-                  EvalOS<span>— Quality Gate</span>
-                </h3>
-                <p>
-                  Deterministic agent evaluation harness. Validates code against
-                  strict contracts and AST invariants before merge, eliminating
-                  self-reported success.
-                </p>
-              </div>
-            </article>
+            <div className="st-col">
+              <article className="st">
+                <span className="st-growth-stem" aria-hidden="true" />
+                <span className="st-growth-shimmer" aria-hidden="true" />
+                <span className="wm" data-s="-0.06">
+                  02
+                </span>
+                <div className="top">
+                  <span className="code">A.02 · IN DEV</span>
+                  <span className="pill dev">IN DEV</span>
+                </div>
+                <div className="bot">
+                  <h3>
+                    EvalOS<span>— Quality Gate</span>
+                  </h3>
+                  <p>
+                    Deterministic agent evaluation harness. Validates code against
+                    strict contracts and AST invariants before merge, eliminating
+                    self-reported success.
+                  </p>
+                </div>
+              </article>
+              <div className="st-pedestal" aria-hidden="true" />
+            </div>
 
             {/* Card 3: Context Spine (In Dev) */}
-            <article className="st">
-              <span className="wm" data-s="-0.06">
-                03
-              </span>
-              <div className="top">
-                <span className="code">A.03 · IN DEV</span>
-                <span className="pill dev">IN DEV</span>
-              </div>
-              <div className="bot">
-                <h3>
-                  Context Spine<span>— Memory</span>
-                </h3>
-                <p>
-                  Durable workspace knowledge mesh. Embeds persistent memory and
-                  project history into repositories without token bloat.
-                </p>
-              </div>
-            </article>
+            <div className="st-col">
+              <article className="st">
+                <span className="st-growth-stem" aria-hidden="true" />
+                <span className="st-growth-shimmer" aria-hidden="true" />
+                <span className="wm" data-s="-0.06">
+                  03
+                </span>
+                <div className="top">
+                  <span className="code">A.03 · IN DEV</span>
+                  <span className="pill dev">IN DEV</span>
+                </div>
+                <div className="bot">
+                  <h3>
+                    Context Spine<span>— Memory</span>
+                  </h3>
+                  <p>
+                    Durable workspace knowledge mesh. Embeds persistent memory and
+                    project history into repositories without token bloat.
+                  </p>
+                </div>
+              </article>
+              <div className="st-pedestal" aria-hidden="true" />
+            </div>
 
             {/* Card 4: Swarm Mesh (Planned) */}
-            <article className="st d">
-              <span className="wm" data-s="-0.06">
-                04
-              </span>
-              <div className="top">
-                <span className="code">A.04 · PLANNED</span>
-                <span className="pill">PLANNED</span>
-              </div>
-              <div className="bot">
-                <h3>
-                  Swarm Mesh<span>— Dispatch</span>
-                </h3>
-                <p>
-                  Distributed fleet router. Coordinates multi-agent teams with
-                  dependency graphs, bounded execution scopes, and automated
-                  handoffs.
-                </p>
-              </div>
-            </article>
+            <div className="st-col">
+              <article className="st d">
+                <span className="st-growth-stem" aria-hidden="true" />
+                <span className="st-growth-shimmer" aria-hidden="true" />
+                <span className="wm" data-s="-0.06">
+                  04
+                </span>
+                <div className="top">
+                  <span className="code">A.04 · PLANNED</span>
+                  <span className="pill">PLANNED</span>
+                </div>
+                <div className="bot">
+                  <h3>
+                    Swarm Mesh<span>— Dispatch</span>
+                  </h3>
+                  <p>
+                    Distributed fleet router. Coordinates multi-agent teams with
+                    dependency graphs, bounded execution scopes, and automated
+                    handoffs.
+                  </p>
+                </div>
+              </article>
+              <div className="st-pedestal" aria-hidden="true" />
+            </div>
           </div>
 
           <div className="axis">
@@ -285,6 +327,9 @@ export default function RoadmapSection() {
           </div>
         </div>
       </div>
+
+      {/* Transition Spacer allowing Section 12 (Insights) to rise with parallax */}
+      <div className="roadmap-stage__exit-spacer" aria-hidden="true" />
     </section>
   );
 }

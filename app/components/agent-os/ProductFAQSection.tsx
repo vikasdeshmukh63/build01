@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const faqs = [
   {
     question: "What is AgentOS?",
@@ -32,21 +36,52 @@ const faqs = [
 ];
 
 export default function ProductFAQSection() {
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
+
+  const toggle = (idx: number) => {
+    setOpenIdx(openIdx === idx ? null : idx);
+  };
+
   return (
-    <section id="product-faq" className="w-full">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">
-          Agent OS — Frequently Asked Questions
+    <section id="product-faq" className="subpage-section">
+      <div className="subpage-shell">
+        <span className="subpage-tag">FAQS</span>
+
+        <h2 className="subpage-title">
+          AgentOS <em>Frequently Asked Questions.</em>
         </h2>
 
-        <dl className="flex flex-col gap-8 max-w-3xl">
-          {faqs.map((item) => (
-            <div key={item.question}>
-              <dt className="text-base font-semibold mb-2">{item.question}</dt>
-              <dd className="text-sm leading-relaxed">{item.answer}</dd>
-            </div>
-          ))}
-        </dl>
+        <p className="subpage-lead">
+          Everything you need to know about adopting, running, and orchestrating
+          AgentOS in production environments.
+        </p>
+
+        <div className="subpage-faq-list">
+          {faqs.map((item, idx) => {
+            const isOpen = openIdx === idx;
+            return (
+              <div
+                key={item.question}
+                className={`subpage-faq-item ${isOpen ? "open" : ""}`}
+              >
+                <button
+                  type="button"
+                  className="subpage-faq-trigger"
+                  onClick={() => toggle(idx)}
+                  aria-expanded={isOpen}
+                >
+                  <span>{item.question}</span>
+                  <em aria-hidden="true">+</em>
+                </button>
+                {isOpen && (
+                  <div className="subpage-faq-content">
+                    <p>{item.answer}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
